@@ -29,13 +29,13 @@
 terraform init
 ```
 
-1. Terraform 構文チェック
+2. Terraform 構文チェック
 
 ```bash
 terraform plan
 ```
 
-1. 環境構築実行
+3. 環境構築実行
 
 ```bash
 terraform apply
