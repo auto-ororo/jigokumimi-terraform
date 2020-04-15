@@ -1,0 +1,67 @@
+[
+  {
+    "name": "app",
+    "image": "627172781845.dkr.ecr.ap-northeast-1.amazonaws.com/app:latest",
+    "cpu": 200,
+    "memoryReservation": 200,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8080
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "jigokumimi-service",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "app"
+      }
+    },
+    "secrets": [
+      {
+        "name": "DB_HOST",
+        "valueFrom": "DB_HOST"
+      },
+      {
+        "name": "DB_USERNAME",
+        "valueFrom": "DB_USERNAME"
+      },
+      {
+        "name": "DB_PASSWORD",
+        "valueFrom": "DB_PASSWORD"
+      },
+      {
+        "name": "DB_DATABASE",
+        "valueFrom": "DB_DATABASE"
+      },
+            {
+        "name": "DB_PORT",
+        "valueFrom": "DB_PORT"
+      }
+    ]
+  },
+  {
+    "name": "nginx",
+    "image": "627172781845.dkr.ecr.ap-northeast-1.amazonaws.com/nginx:latest",
+    "essential": true,
+    "cpu": 200,
+    "memoryReservation": 100,
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "links": [
+      "app"
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "jigokumimi-service",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "nginx"
+      }
+    }
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "app",
+    "image": "627172781845.dkr.ecr.ap-northeast-1.amazonaws.com/app:latest",
+    "cpu": 100,
+    "memory": null,
+    "memoryReservation": 100,
+    "essential": true,
+    "command": [
+      "php",
+      "artisan",
+      "migrate",
+      "--force"
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "jigokumimi-service",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "migration"
+      }
+    },
+    "environment": [],
+    "secrets": [
+      {
+        "name": "DB_HOST",
+        "valueFrom": "DB_HOST"
+      },
+      {
+        "name": "DB_USERNAME",
+        "valueFrom": "DB_USERNAME"
+      },
+      {
+        "name": "DB_PASSWORD",
+        "valueFrom": "DB_PASSWORD"
+      },
+      {
+        "name": "DB_DATABASE",
+        "valueFrom": "DB_DATABASE"
+      },
+      {
+        "name": "DB_PORT",
+        "valueFrom": "DB_PORT"
+      }
+    ]
+  }
+]
