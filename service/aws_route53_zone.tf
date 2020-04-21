@@ -1,5 +1,5 @@
 data "aws_route53_zone" "jigokumimi" {
-  name = "ororoauto.com"
+  name = "jigokumimi.net"
 }
 
 resource "aws_route53_record" "jigokumimi" {
